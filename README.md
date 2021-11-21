@@ -12,6 +12,20 @@ A **DuckDuckGo** search for _python list comprehension_, setting the max number 
 $ duck python list comprehension --limit 4
 ```
 
+### History
+
+View your search history:
+
+```
+$ duck --history
+```
+
+Clear your search history:
+
+```
+$ duck --clear-history
+```
+
 ### Properties
 
 Toggling stylised outputs in the terminal:
