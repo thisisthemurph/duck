@@ -1,12 +1,15 @@
 import argparse
+from duck import history
 
 from duck.helpers.color import Color
+from duck.history.history import History
 from duck.properties.props import Properties
 from duck.engine.search_engine import DuckDuckGo
 from duck.interface.terminal import TerminalInterface
 
 
 def run(args: argparse.Namespace) -> None:
+    search_history = History()
     props = Properties()
     interface = TerminalInterface(props)
 
@@ -27,6 +30,22 @@ def run(args: argparse.Namespace) -> None:
     elif args.reset_props:
         props.reset()
         interface.print("Your properties have been set back to the defaults.")
+
+    elif args.history:
+        history = search_history.get_history()
+
+        idx = 0
+        for idx, item in enumerate(history, start=1):
+            interface.print(f"{idx}. {item}")
+
+        if idx:
+            interface.print(f"\n{idx} history items shown.")
+        else:
+            interface.print("There are no history items to show.")
+
+    elif args.clear_history:
+        search_history.clear()
+        interface.print("Your search history has been cleared.")
 
     elif args.search:
         engine = DuckDuckGo()

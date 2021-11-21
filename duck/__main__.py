@@ -45,6 +45,16 @@ def parse_args() -> argparse.Namespace:
     )
 
     #
+    # Additional functionality
+    #
+
+    parser.add_argument(
+        "--history", help="shows a list of historical searches", action="store_true"
+    )
+
+    parser.add_argument("--clear-history", help="clears the search histort.", action="store_true")
+
+    #
     # Updating the user settings
     #
 

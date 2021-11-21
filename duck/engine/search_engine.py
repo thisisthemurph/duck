@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from typing import Generator
 
 from duck.engine.search_result import SearchResult
+from duck.history.history import History
 
 
 class DuckDuckGo:
@@ -54,6 +55,9 @@ class DuckDuckGo:
 
     def search(self, query: str, limit: int = 5):
         """Perform a search using DuckDockGo"""
+        search_history = History()
+        search_history.add(" ".join(query))
+
         url = self.__build_url(query)
         result = self.session.get(url)
         return self.__parse(result.text, limit=limit)
